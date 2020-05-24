@@ -2,13 +2,14 @@
 
 This app has been generated using `create-react-app`, then cleaned up a little so we have a project with just the elements we need to get started.
 
-This is a “single page application” with a public message board app with the following features:- 
-● A client can create an account and login 
-● A client can create a new public message thread  
-● A client can add a public reply to a message thread  
-● A client can modify their own messages  
-● A client can delete their own messages  
-● Public message threads and replies are viewable  
+This is a “single page application” with a public message board app with the following features:  
+
+- A client can create an account and login 
+- A client can create a new public message thread  
+- A client can add a public reply to a message thread  
+- A client can modify their own messages  
+- A client can delete their own messages  
+- Public message threads and replies are viewable  
 
 
 ## Tech used
