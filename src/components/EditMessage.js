@@ -70,9 +70,9 @@ export const EditMessage = ({ id, author, message }) => {
             onSave={handleEdit}
             editing={editing}
             hideIcons={true}
-            // editButtonContent={<Tooltip title="Edit message"><IconButton><EditIcon size="small" /></IconButton></Tooltip>}
-            // saveButtonContent={<Tooltip title="Save"><IconButton><CheckRoundedIcon size="small" /></IconButton></Tooltip>}
-            // cancelButtonContent={<Tooltip title="Cancel"><IconButton><CloseRoundedIcon size="small" /></IconButton></Tooltip>}
+            editButtonContent={<Tooltip title="Edit message"><IconButton><EditIcon size="small" /></IconButton></Tooltip>}
+            saveButtonContent={<Tooltip title="Save"><IconButton><CheckRoundedIcon size="small" /></IconButton></Tooltip>}
+            cancelButtonContent={<Tooltip title="Cancel"><IconButton><CloseRoundedIcon size="small" /></IconButton></Tooltip>}
             showButtonsOnHover
             viewProps={{
               // className: 'message-text',

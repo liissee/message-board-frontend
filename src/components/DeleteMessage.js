@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styled from 'styled-components/macro'
 import Tooltip from '@material-ui/core/Tooltip';
+import { Button } from '@material-ui/core';
 
 
 export const DeleteMessage = ({ id, author }) => {
@@ -21,13 +22,13 @@ export const DeleteMessage = ({ id, author }) => {
 
   return (
     <div>
-      {/* <Tooltip title="Delete message"> */}
       {accessToken && isAllowed && (
-        <IconButton disabled={!accessToken} aria-label="delete" onClick={handleRemove}>
-          <DeleteIcon />
-        </IconButton>
+        <Tooltip title="Delete message">
+          <IconButton disabled={!accessToken} aria-label="delete" onClick={handleRemove}>
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
       )}
-      {/* </Tooltip> */}
     </div>
   )
 }
