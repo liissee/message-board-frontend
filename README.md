@@ -1,19 +1,34 @@
-# Technigo React Starter App
+# Message Board 
 
 This app has been generated using `create-react-app`, then cleaned up a little so we have a project with just the elements we need to get started.
 
-Add components in the `src` folder and use them in `src/app.js` to get started.
+This is a “single page application” with a public message board app with the following features:- 
+● A client can create an account and login 
+● A client can create a new public message thread  
+● A client can add a public reply to a message thread  
+● A client can modify their own messages  
+● A client can delete their own messages  
+● Public message threads and replies are viewable  
 
-## Usage
 
-1. On GitHub, click the 'use this template' button to create a new repo on your account
-1. Clone the new repo to your computer
-1. Install required dependencies with npm: `npm install`
-1. Start the project: `npm start`
+## Tech used
+- React
+- Redux
+- Express
+- MongoDB, Mongoose
+- Material UI
 
-Alternatively, if you don't want a new git repo on your account;
+## Getting started
 
-1. Download & extract the [latest release](https://github.com/Technigo/react-starter/releases/latest) from GitHub
-1. Open the directory in the terminal: `cd /path/to/react-starter`
-1. Install required dependencies with npm: `npm install`
-1. Start the project: `npm start`
+Front End:
+- npm install to install required dependencies for frontend
+- Start the project with npm start. 
+- Open http://localhost:3000 to view it in the browser.
+
+Back End: https://github.com/liissee/message-board-api 
+- npm install to install required dependencies for backend
+- Start the server with npm run dev
+- Open http://localhost:8080 to view it in the browser.
+
+## Deployed version:
+https://message-board-liissee.netlify.app/
