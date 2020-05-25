@@ -24,9 +24,13 @@ export const Registration = ({ handleClick }) => {
   const [registred, setRegistred] = useState(false)
   const [failure, setFailure] = useState(false)
 
+  //URL - localhost or deployed version
+  const url = "https://linda-messageboard-api.herokuapp.com"
+  //const url = "http://localhost:8080"
+
   const handleSubmit = event => {
     event.preventDefault();
-    fetch("http://localhost:8080/users", {
+    fetch(`${url}/users`, {
       method: "POST",
       body: JSON.stringify({ userName, email, password }),
       headers: { "Content-Type": "application/json" }

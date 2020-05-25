@@ -37,6 +37,7 @@ export const Login = ({ handleClick }) => {
       <Text>Please identify yourself to post a message</Text>
       <div>
         <TextField
+          className="text-fields"
           color="secondary"
           variant="outlined"
           margin="dense"

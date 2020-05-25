@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteMessages } from 'reducers/messages';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import styled from 'styled-components/macro'
 import Tooltip from '@material-ui/core/Tooltip';
-import { Button } from '@material-ui/core';
 
 
 export const DeleteMessage = ({ id, author }) => {
@@ -18,6 +16,7 @@ export const DeleteMessage = ({ id, author }) => {
   const handleRemove = (event) => {
     event.preventDefault()
     dispatch(deleteMessages({ id, author }))
+    console.log({ id, author })
   }
 
   return (

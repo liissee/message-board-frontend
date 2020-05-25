@@ -7,9 +7,6 @@ const initialState = {
   userName: localStorage.userName || "",
   accessToken: localStorage.accessToken || "",
   userId: localStorage.userId || ""
-  // accessToken: localStorage.getItem('accessToken'),
-  // userName: localStorage.getItem('userName'),
-  // userId: localStorage.getItem('userId')
 }
 
 
@@ -44,11 +41,14 @@ export const users = createSlice({
   }
 })
 
+//URL - localhost or deployed version
+const url = "https://linda-messageboard-api.herokuapp.com"
+//const url = "http://localhost:8080"
 
 //LOGIN 
 export const fetchUser = ({ userName, password }) => {
   return dispatch => {
-    fetch("http://localhost:8080/sessions", {
+    fetch(`${url}/sessions`, {
       method: 'POST',
       body: JSON.stringify({ userName, password }),
       headers: { 'Content-Type': 'application/json' }

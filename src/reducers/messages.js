@@ -33,11 +33,15 @@ export const messages = createSlice({
   }
 })
 
+//Change here if you want to try with localhost and in Registration.js
+const url = "https://linda-messageboard-api.herokuapp.com"
+//const url = "http://localhost:8080"
+
 //GET MESSAGES
 export const fetchMessages = () => {
   return dispatch => {
     dispatch(ui.actions.setLoading(true))
-    fetch('http://localhost:8080/messages')
+    fetch(`${url}/messages`)
       .then((res) => res.json())
       .then((json) => {
         console.log("1", json)
@@ -67,7 +71,7 @@ export const fetchMessages = () => {
 export const postMessages = ({ message, author, parentId }) => {
   return dispatch => {
     const accessToken = localStorage.getItem('accessToken')
-    fetch("http://localhost:8080/messages", {
+    fetch(`${url}/messages`, {
       method: "POST",
       body: JSON.stringify({ message, author, parentId }),
       headers: {
@@ -81,7 +85,7 @@ export const postMessages = ({ message, author, parentId }) => {
       .catch(() => {
         dispatch(messages.ui.setErrorMessage({ error: 'can not post message' }));
       });
-    fetch('http://localhost:8080/messages')
+    fetch(`${url}/messages`)
       .then((res) => res.json())
       .then((json) => {
         dispatch(messages.actions.setMessage(json));
@@ -99,7 +103,7 @@ export const deleteMessages = ({ id, author }) => {
     const accessToken = localStorage.getItem('accessToken')
     const userId = localStorage.getItem('userId')
 
-    fetch(`http://localhost:8080/messages/${id}`, {
+    fetch(`${url}/"messages"/${id}`, {
       method: 'DELETE',
       statusCode: 204,
       body: JSON.stringify({ id, author, userId, parentId: id }),
@@ -127,7 +131,7 @@ export const editMessages = ({ id, author, newValue }) => {
   return dispatch => {
     const accessToken = localStorage.getItem('accessToken')
     const userId = localStorage.getItem('userId')
-    fetch(`http://localhost:8080/messages/${id}`, {
+    fetch(`${url}/"messages"/${id}`, {
       method: 'PUT',
       body: JSON.stringify({ message: newValue, userId: userId, author: author }),
       headers: {
