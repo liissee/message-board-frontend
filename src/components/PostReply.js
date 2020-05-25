@@ -7,6 +7,7 @@ import styled from 'styled-components/macro'
 const Main = styled.div`
 }
 `
+
 const PostMessage = styled.div`
   margin: 10px;
 & {

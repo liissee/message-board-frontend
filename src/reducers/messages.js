@@ -4,7 +4,7 @@ import { ui } from 'reducers/ui'
 export const messages = createSlice({
   name: 'messages',
   initialState: {
-    messages: [],
+    messages: []
   },
   reducers: {
     setMessage: (state, action) => {
@@ -41,8 +41,10 @@ export const fetchMessages = () => {
     fetch('http://localhost:8080/messages')
       .then((res) => res.json())
       .then((json) => {
-        console.log(json)
-        if (json.children && json[0]) {
+        console.log("1", json)
+        if (json[0]) {
+          console.log("json children", json.children)
+
           const replies = function (json, root) {
             const nestedMessages = {};
             json.forEach(message => {
@@ -76,42 +78,22 @@ export const postMessages = ({ message, author, parentId }) => {
         Authorization: accessToken
       }
     })
-      .then(res => res.json())
+      .then(() => {
+        return dispatch(messages.actions.setPostedMessage(author, message, parentId));
+      })
+      .catch(() => {
+        dispatch(messages.ui.setErrorMessage({ error: 'can not post message' }));
+      });
+    fetch('http://localhost:8080/messages')
+      .then((res) => res.json())
       .then((json) => {
-        console.log("author", author)
-        console.log("json post", json)
-        dispatch(messages.actions.setPostedMessage(json));
         dispatch(messages.actions.setMessage(json));
       })
       .catch(() => {
-        console.log("Failed to post message")
-      })
+        dispatch(messages.ui.setErrorMessage({ error: 'can not fetch message' }));
+      });
   }
 };
-// //POST MESSAGES
-// export const postMessages = ({ message, author, parentId }) => {
-//   return dispatch => {
-//     const accessToken = localStorage.getItem('accessToken')
-//     // dispatch(ui.actions.setLoading(true))
-//     fetch("http://localhost:8080/messages", {
-//       method: "POST",
-//       body: JSON.stringify({ message, author, parentId }),
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: accessToken
-//       }
-//     })
-//       .then(res => {
-//         console.log("author", author)
-//         dispatch(messages.actions.setPostedMessage(message, author, parentId));
-//         // dispatch(messages.actions.setMessage(message));
-//         dispatch(ui.actions.setLoading(false))
-//       })
-//       .catch(() => {
-//         console.log("Failed to post message")
-//       })
-//   }
-// };
 
 // DELETE MESSAGE
 export const deleteMessages = ({ id, author }) => {
@@ -159,7 +141,7 @@ export const editMessages = ({ id, author, newValue }) => {
     })
       .then((res) => res.json())
       .then((updatedMessage) => {
-        console.log("2", updatedMessage)
+        console.log("updated", updatedMessage)
         dispatch(messages.actions.editMessage(updatedMessage))
         dispatch(ui.actions.setLoading(false))
       })
