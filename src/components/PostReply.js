@@ -5,10 +5,11 @@ import { TextField, Button } from '@material-ui/core';
 import styled from 'styled-components/macro'
 
 const Main = styled.div`
-  & {
-.postMessage {
+}
+`
+const PostMessage = styled.div`
   margin: 10px;
-  }
+& {
 .input-field {
   width: 100%;
   background: #f1f1f1;
@@ -33,11 +34,11 @@ export const PostReply = ({ parentId }) => {
 
   return (
     <Main>
-      <div className="postMessage">
+      <PostMessage>
         <TextField
           color="secondary"
-          className="input-field"
           label="New comment"
+          className="input-field"
           id="outlined-multiline-static"
           multiline
           rows={1}
@@ -47,10 +48,10 @@ export const PostReply = ({ parentId }) => {
           value={message}
           onChange={event => setMessage(event.target.value)}
         />
-        <Button size="small" disabled={!accessToken} variant="contained" type="submit" onClick={handleSubmit}>
+        <Button size="small" disabled={!accessToken || message.length < 1} variant="contained" type="submit" onClick={handleSubmit}>
           Post reply
-        </Button>
-      </div>
+            </Button>
+      </PostMessage>
     </Main>
   )
 }

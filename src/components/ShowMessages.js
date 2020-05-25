@@ -25,7 +25,6 @@ export const ShowMessages = (props) => {
 
   useEffect(() => {
     dispatch(fetchMessages());
-    console.log(messages)
   }, [dispatch]);
 
 

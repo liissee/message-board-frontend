@@ -42,7 +42,7 @@ export const fetchMessages = () => {
       .then((res) => res.json())
       .then((json) => {
         console.log(json)
-        if (json[0]) {
+        if (json.children && json[0]) {
           const replies = function (json, root) {
             const nestedMessages = {};
             json.forEach(message => {
@@ -81,7 +81,7 @@ export const postMessages = ({ message, author, parentId }) => {
         console.log("author", author)
         console.log("json post", json)
         dispatch(messages.actions.setPostedMessage(json));
-        // dispatch(messages.actions.setMessage(json));
+        dispatch(messages.actions.setMessage(json));
       })
       .catch(() => {
         console.log("Failed to post message")

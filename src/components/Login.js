@@ -7,17 +7,18 @@ import { Button, TextField } from '@material-ui/core'
 const Main = styled.div`
 width: 350px;
 padding: 10px;
-& {
-  .buttons {
+`
+const ButtonWrapper = styled.div`
     margin-top: 5px;
     display: flex; 
     justify-content: space-between;
-  }
-.signIn {
-  font-size: 13px;
-}
-}
 `
+const Text = styled.div`
+     font-size: 13px;
+`
+
+
+
 
 export const Login = ({ handleClick }) => {
   const [userName, setUserName] = useState("");
@@ -33,11 +34,10 @@ export const Login = ({ handleClick }) => {
 
   return (
     <Main>
-      <div className="signIn">Please identify yourself to post a message</div>
+      <Text>Please identify yourself to post a message</Text>
       <div>
         <TextField
           color="secondary"
-          className="textfields"
           variant="outlined"
           margin="dense"
           label="User name"
@@ -47,10 +47,9 @@ export const Login = ({ handleClick }) => {
           type="text"
           value={userName}
           onChange={event => setUserName(event.target.value)}
-        ></TextField>
+        />
         <TextField
           color="secondary"
-          className="textfields"
           variant="outlined"
           margin="dense"
           size="small"
@@ -60,10 +59,10 @@ export const Login = ({ handleClick }) => {
           type="password"
           value={password}
           onChange={event => setPassword(event.target.value)}
-        ></TextField>
+        />
       </div>
-      {failed && <div className="signIn">Incorrect user and/or password.</div>}
-      <div className="buttons">
+      {failed && <Text>Incorrect user and/or password.</Text>}
+      <ButtonWrapper>
         <Button
           size="small"
           variant="contained"
@@ -79,7 +78,7 @@ export const Login = ({ handleClick }) => {
           type="button" onClick={handleClick}>
           Not a member?
         </Button>
-      </div>
+      </ButtonWrapper>
     </Main>
   )
 }

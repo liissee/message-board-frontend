@@ -16,7 +16,7 @@ import moment from "moment"
 const Main = styled.div`
   margin-bottom: 30px;
 & {
-.messageCard:nth-child(odd) {
+.messageCard {
   margin: 10px;
   width: 400px;
   background: #E4BFAF;
@@ -41,6 +41,9 @@ const Main = styled.div`
 .messageContent {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
   }
 }
 `
@@ -72,7 +75,7 @@ export const MessageCard = ({ id, message, author, createdAt, children }) => {
         <CardHeader
           avatar={
             <Avatar aria-label="author">
-              R
+              T
           </Avatar>
           }
           title={author}
@@ -116,7 +119,6 @@ export const MessageCard = ({ id, message, author, createdAt, children }) => {
                   <EditMessage id={reply._id} author={reply.author} message={reply.message} />
                   <DeleteMessage id={reply._id} author={reply.author} />
                 </CardContent>
-                {/* <Typography variant="body2" color="textSecondary">{reply.message}</Typography> */}
               </CardContent>
             ))}
           </CardContent>

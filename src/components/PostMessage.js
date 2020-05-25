@@ -5,6 +5,8 @@ import { Card, Button, TextField } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
+import Tooltip from '@material-ui/core/Tooltip';
+
 import styled from 'styled-components/macro'
 
 const Main = styled.div`
@@ -24,12 +26,11 @@ const Main = styled.div`
 }
 `
 export const PostMessage = () => {
-  const [message, setMessage] = useState()
+  const [message, setMessage] = useState("")
 
   // save the logged in userId to author in User mongoose model.
   const author = useSelector((state) => state.users.userId)
   const accessToken = useSelector((state) => state.users.accessToken)
-
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
@@ -38,7 +39,6 @@ export const PostMessage = () => {
     dispatch(fetchMessages());
     setMessage("")
   }
-
   return (
     <Main>
       <Card className="postMessage">
@@ -49,7 +49,7 @@ export const PostMessage = () => {
           </Avatar>
           }
           title="Start a new discussion"
-          subheader="remember be kind"
+          subheader={accessToken ? "" : "Sign in to post a new message"}
         />
 
         <CardContent>
@@ -66,7 +66,7 @@ export const PostMessage = () => {
             value={message}
             onChange={event => setMessage(event.target.value)}
           />
-          <Button variant="contained" disabled={!accessToken} type="submit" onClick={handleSubmit}>
+          <Button variant="contained" disabled={!accessToken || message.length < 1} type="submit" onClick={handleSubmit}>
             Post
         </Button>
         </CardContent>

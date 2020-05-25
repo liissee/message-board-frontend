@@ -5,16 +5,14 @@ import styled from 'styled-components/macro'
 const Main = styled.div`
 width: 350px;
 padding: 10px;
-& {
-  .buttons {
+`
+const ButtonWrapper = styled.div`
     margin-top: 5px;
     display: flex; 
     justify-content: space-between;
-  }
-  .text {
-    font-size: 13px;
-  }
-}
+`
+const Text = styled.div`
+     font-size: 13px;
 `
 
 export const Registration = ({ handleClick }) => {
@@ -51,15 +49,15 @@ export const Registration = ({ handleClick }) => {
   return (
     <Main>
       {registred &&
-        <div className="text">Your account has been created. Please log in with your user name.</div>
+        <Text>Your account has been created. Please log in with your user name.</Text>
       }
       {!registred && (
         <div>
-          {!failure && <div className="text">Please create an account to post a message</div>}
+          {!failure && <Text>Please create an account to post a message</Text>}
           {failure && (
-            <div className="text">
+            <Text>
               User not created. Try using another name or email!
-            </div>
+            </Text>
           )}
           {userName.length < 2 && userName.length !== 0 && " is too short"}
           {userName.length > 20 && " is too long"}
@@ -76,8 +74,7 @@ export const Registration = ({ handleClick }) => {
             type="text"
             value={userName}
             onChange={event => setUserName(event.target.value)}
-          ></TextField>
-
+          />
           <TextField
             color="secondary"
             variant="outlined"
@@ -92,7 +89,7 @@ export const Registration = ({ handleClick }) => {
             type="text"
             value={email}
             onChange={event => setEmail(event.target.value.toLowerCase())}
-          ></TextField>
+          />
           <div>
             {password.length < 5 && password.length !== 0 && " is too short"}
             <TextField
@@ -108,9 +105,9 @@ export const Registration = ({ handleClick }) => {
               size="small"
               value={password}
               onChange={event => setPassword(event.target.value)}
-            ></TextField>
+            />
           </div>
-          <div className="buttons">
+          <ButtonWrapper>
             <Button
               variant="contained"
               color="secondary"
@@ -134,7 +131,7 @@ export const Registration = ({ handleClick }) => {
               type="button" onClick={handleClick}>
               Already a member?
             </Button>
-          </div>
+          </ButtonWrapper>
         </div>
       )}
     </Main>

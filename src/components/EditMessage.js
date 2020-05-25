@@ -14,15 +14,12 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  
-& {
-  .message-text {
-    font-family: source-code-pro, Monaco, Consolas, "Courier New", monospace;
-  }
-}
+`
+const Text = styled.div`
+  font-family: source-code-pro, Monaco, Consolas, "Courier New", monospace;
 `
 const StyledEdiText = styled(EdiText)`
-&{
+& {
 .message-text {
   font-family: source-code-pro, Monaco, Consolas, "Courier New", monospace;
   color: black;
@@ -70,12 +67,12 @@ export const EditMessage = ({ id, author, message }) => {
             onSave={handleEdit}
             editing={editing}
             hideIcons={true}
-            editButtonContent={<Tooltip title="Edit message"><IconButton><EditIcon size="small" /></IconButton></Tooltip>}
-            saveButtonContent={<Tooltip title="Save"><IconButton><CheckRoundedIcon size="small" /></IconButton></Tooltip>}
-            cancelButtonContent={<Tooltip title="Cancel"><IconButton><CloseRoundedIcon size="small" /></IconButton></Tooltip>}
+            // editButtonContent={<Tooltip title="Edit message"><IconButton><EditIcon size="small" /></IconButton></Tooltip>}
+            // saveButtonContent={<Tooltip title="Save"><IconButton><CheckRoundedIcon size="small" /></IconButton></Tooltip>}
+            // cancelButtonContent={<Tooltip title="Cancel"><IconButton><CloseRoundedIcon size="small" /></IconButton></Tooltip>}
             showButtonsOnHover
             viewProps={{
-              // className: 'message-text',
+              className: 'message-text',
               style: { borderRadius: 3 }
             }}
             inputProps={{
@@ -87,7 +84,7 @@ export const EditMessage = ({ id, author, message }) => {
               },
               rows: 3
             }} />
-          : <div className="message-text">{message}</div>
+          : <Text>{message}</Text>
         }
       </div>
     </Main>
