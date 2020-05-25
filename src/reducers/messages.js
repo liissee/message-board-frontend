@@ -81,14 +81,14 @@ export const postMessages = ({ message, author, parentId }) => {
       .catch(() => {
         dispatch(messages.ui.setErrorMessage({ error: 'can not post message' }));
       });
-    // fetch('http://localhost:8080/messages')
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     dispatch(messages.actions.setMessage(json));
-    //   })
-    //   .catch(() => {
-    //     dispatch(messages.ui.setErrorMessage({ error: 'can not fetch message' }));
-    //   });
+    fetch('http://localhost:8080/messages')
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(messages.actions.setMessage(json));
+      })
+      .catch(() => {
+        dispatch(messages.ui.setErrorMessage({ error: 'can not fetch message' }));
+      });
   }
 };
 
@@ -102,7 +102,7 @@ export const deleteMessages = ({ id, author }) => {
     fetch(`http://localhost:8080/messages/${id}`, {
       method: 'DELETE',
       statusCode: 204,
-      body: JSON.stringify({ id, author, userId }),
+      body: JSON.stringify({ id, author, userId, parentId: id }),
       headers: {
         "Content-Type": "application/json",
         Authorization: accessToken

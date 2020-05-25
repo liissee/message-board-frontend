@@ -11,7 +11,7 @@ const Main = styled.div`
   display:flex;
   flex-direction: column;
 `
-const HeaderContent = styled.div`
+const HeaderContent = styled.h1`
   color: white;
   font-size: 50px;
   font-family: source-code-pro, Monaco, Consolas, "Courier New", monospace;

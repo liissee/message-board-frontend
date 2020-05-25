@@ -18,8 +18,8 @@ export const Logout = () => {
 
   return (
     <Button
+      size="small"
       variant="contained"
-      color="secondary"
       onClick={handleLogout}>
       Sign out
     </Button>
