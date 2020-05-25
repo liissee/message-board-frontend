@@ -3,16 +3,18 @@ import { Button, TextField } from '@material-ui/core'
 import styled from 'styled-components/macro'
 
 const Main = styled.div`
-width: 350px;
-padding: 10px;
+  width: 350px;
+  margin: 10px;
+  background: lightgrey;
+  padding: 10px;
 `
 const ButtonWrapper = styled.div`
-    margin-top: 5px;
-    display: flex; 
-    justify-content: space-between;
+  margin-top: 5px;
+  display: flex; 
+  justify-content: space-between;
 `
 const Text = styled.div`
-     font-size: 13px;
+ font-size: 13px;
 `
 
 export const Registration = ({ handleClick }) => {
@@ -36,15 +38,11 @@ export const Registration = ({ handleClick }) => {
           )
         } else {
           setRegistred(true)
-          setTimeout(reDirect, 2000);
         }
       })
       .catch(err => console.log("Error:", err))
   }
 
-  const reDirect = () => {
-    // history.push(`/login`)
-  }
 
   return (
     <Main>

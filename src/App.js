@@ -26,10 +26,10 @@ align-items: center; */
 
 export const App = () => {
   return (
-    <Main>
+    <>
       <Provider store={store}>
         <MessageBoard />
       </Provider>
-    </Main>
+    </>
   )
 }

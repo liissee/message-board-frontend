@@ -5,19 +5,19 @@ import styled from 'styled-components/macro'
 import { Button, TextField } from '@material-ui/core'
 
 const Main = styled.div`
-width: 350px;
-padding: 10px;
+  width: 350px;
+  margin: 10px;
+  background: lightgrey;
+  padding: 10px;
 `
 const ButtonWrapper = styled.div`
-    margin-top: 5px;
-    display: flex; 
-    justify-content: space-between;
+  margin-top: 5px;
+  display: flex; 
+  justify-content: space-between;
 `
 const Text = styled.div`
-     font-size: 13px;
+  font-size: 13px;
 `
-
-
 
 
 export const Login = ({ handleClick }) => {
@@ -66,7 +66,6 @@ export const Login = ({ handleClick }) => {
         <Button
           size="small"
           variant="contained"
-          color="secondary"
           type="submit"
           onClick={handleSignin}
         >

@@ -16,11 +16,6 @@ import moment from "moment"
 const Main = styled.div`
   margin-bottom: 30px;
 & {
-.messageCard {
-  margin: 10px;
-  width: 400px;
-  background: #E4BFAF;
-  }
 .replyContainer {
   padding-bottom: 0;
   margin: 0px;
@@ -35,8 +30,8 @@ const Main = styled.div`
   align-items: center;
   }
 .replyCard {
-  background: #F6E4E3;
-  border: lightgrey solid 1px;
+  background: lightgrey;
+  border: white solid 1px;
   }
 .messageContent {
   display: flex;
@@ -47,7 +42,15 @@ const Main = styled.div`
   }
 }
 `
-
+const CardStyle = styled(Card)`
+  margin: 10px;
+  width: 400px;
+  background-color: #E4BFAF;
+   @media (max-width: 576px) {
+    width: 100%;
+    margin: 0px;
+  }
+`
 const Rotate = styled.div`
 & {
   .expand {
@@ -60,7 +63,6 @@ const Rotate = styled.div`
 }
 `
 
-
 export const MessageCard = ({ id, message, author, createdAt, children }) => {
   const [expanded, setExpanded] = useState(true)
 
@@ -71,7 +73,7 @@ export const MessageCard = ({ id, message, author, createdAt, children }) => {
 
   return (
     <Main>
-      <Card className="messageCard">
+      <CardStyle>
         <CardHeader
           avatar={
             <Avatar aria-label="author">
@@ -105,7 +107,7 @@ export const MessageCard = ({ id, message, author, createdAt, children }) => {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent className="replyContainer">
             {children && children.length && children.length > 0 && children.map((reply) => (
-              <CardContent key={reply._id} className="replyCard">
+              <CardContent key={reply._id} id={reply._id} className="replyCard">
                 <CardHeader
                   avatar={
                     <Avatar aria-label="author">
@@ -123,7 +125,7 @@ export const MessageCard = ({ id, message, author, createdAt, children }) => {
             ))}
           </CardContent>
         </Collapse>
-      </Card>
+      </CardStyle>
     </Main>
   )
 }

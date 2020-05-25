@@ -22,13 +22,13 @@ This is a “single page application” with a public message board app with the
 ## Getting started
 
 Front End:
-- npm install to install required dependencies for frontend
-- Start the project with npm start. 
+- `npm install` to install required dependencies for frontend
+- Start the project with `npm start` 
 - Open http://localhost:3000 to view it in the browser.
 
 Back End: https://github.com/liissee/message-board-api 
-- npm install to install required dependencies for backend
-- Start the server with npm run dev
+- `npm install` to install required dependencies for backend
+- Start the server with `npm run dev`
 - Open http://localhost:8080 to view it in the browser.
 
 ## Deployed version:

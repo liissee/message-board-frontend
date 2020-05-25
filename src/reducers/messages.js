@@ -33,7 +33,6 @@ export const messages = createSlice({
   }
 })
 
-
 //GET MESSAGES
 export const fetchMessages = () => {
   return dispatch => {
@@ -43,8 +42,6 @@ export const fetchMessages = () => {
       .then((json) => {
         console.log("1", json)
         if (json[0]) {
-          console.log("json children", json.children)
-
           const replies = function (json, root) {
             const nestedMessages = {};
             json.forEach(message => {
@@ -84,21 +81,21 @@ export const postMessages = ({ message, author, parentId }) => {
       .catch(() => {
         dispatch(messages.ui.setErrorMessage({ error: 'can not post message' }));
       });
-    fetch('http://localhost:8080/messages')
-      .then((res) => res.json())
-      .then((json) => {
-        dispatch(messages.actions.setMessage(json));
-      })
-      .catch(() => {
-        dispatch(messages.ui.setErrorMessage({ error: 'can not fetch message' }));
-      });
+    // fetch('http://localhost:8080/messages')
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     dispatch(messages.actions.setMessage(json));
+    //   })
+    //   .catch(() => {
+    //     dispatch(messages.ui.setErrorMessage({ error: 'can not fetch message' }));
+    //   });
   }
 };
 
 // DELETE MESSAGE
 export const deleteMessages = ({ id, author }) => {
   return dispatch => {
-    dispatch(ui.actions.setLoading(true))
+    dispatch(ui.actions.setErrorMessage(false))
     const accessToken = localStorage.getItem('accessToken')
     const userId = localStorage.getItem('userId')
 
@@ -113,12 +110,12 @@ export const deleteMessages = ({ id, author }) => {
     })
       .then(() => {
         if (author === userId) {
+          console.log(id)
           dispatch(messages.actions.deleteMessage(id))
           dispatch(ui.actions.setLoading(false))
           dispatch(ui.actions.setErrorMessage(false))
         } else {
           console.log("not your message")
-          dispatch(ui.actions.setLoading(false))
           dispatch(ui.actions.setErrorMessage(true))
         }
       })
@@ -128,7 +125,6 @@ export const deleteMessages = ({ id, author }) => {
 //EDIT MESSAGE
 export const editMessages = ({ id, author, newValue }) => {
   return dispatch => {
-    dispatch(ui.actions.setLoading(true))
     const accessToken = localStorage.getItem('accessToken')
     const userId = localStorage.getItem('userId')
     fetch(`http://localhost:8080/messages/${id}`, {
@@ -143,7 +139,6 @@ export const editMessages = ({ id, author, newValue }) => {
       .then((updatedMessage) => {
         console.log("updated", updatedMessage)
         dispatch(messages.actions.editMessage(updatedMessage))
-        dispatch(ui.actions.setLoading(false))
       })
   }
 }

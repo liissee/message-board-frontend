@@ -19,7 +19,6 @@ align-items: center;
 export const ShowMessages = (props) => {
   const dispatch = useDispatch();
 
-  // const userName = useSelector((state) => state.users.userName)
   const messages = useSelector((state) => state.messages.messages)
   const loading = useSelector(state => state.ui.isLoading)
 

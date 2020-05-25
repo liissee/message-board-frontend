@@ -5,8 +5,18 @@ import { Card, Button, TextField } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-
 import styled from 'styled-components/macro'
+
+const CardStyle = styled(Card)`
+  margin: 10px;
+  width: 400px;
+  background: #E4BFAF;
+   @media (max-width: 576px) {
+    width: 300px;
+    text-align: center;
+    margin: 0px;
+  }
+`
 
 const Main = styled.div`
 & {
@@ -45,7 +55,7 @@ export const PostMessage = () => {
   }
   return (
     <Main>
-      <Card className="postMessage">
+      <CardStyle>
         <CardHeader
           avatar={
             <Avatar className="avatar" aria-label="author">
@@ -74,7 +84,7 @@ export const PostMessage = () => {
             Post
         </Button>
         </CardContent>
-      </Card>
+      </CardStyle>
     </Main>
   )
 }
