@@ -44,28 +44,22 @@ export const fetchMessages = () => {
     fetch(`${url}/messages`)
       .then((res) => res.json())
       .then((json) => {
-        console.log("1", json)
-        if (json[0]) {
-          const replies = function (json, root) {
-            const nestedMessages = {};
-            json.forEach(message => {
-              Object.assign(nestedMessages[message._id] = nestedMessages[message._id] || {}, message);
-              nestedMessages[message.parentId] = nestedMessages[message.parentId] || {};
-              nestedMessages[message.parentId].children = nestedMessages[message.parentId].children || [];
-              nestedMessages[message.parentId].children.push(nestedMessages[message._id]);
-            });
-            return nestedMessages[root].children;
-          }(json, null);
-          dispatch(messages.actions.setMessage(replies));
-          dispatch(ui.actions.setLoading(false))
-        } else {
-          dispatch(messages.actions.setMessage(json));
-          dispatch(ui.actions.setLoading(false))
+        const replies = [];
+        for (const message of json) {
+          const parent = json.find(parent => parent._id === message.parentId);
+          if (parent) {
+            if (!parent.children) parent.children = [];
+            parent.children.push(message);
+          } else {
+            replies.push(message);
+          }
         }
+        console.log("2", replies);
+        dispatch(messages.actions.setMessage(replies))
+        dispatch(ui.actions.setLoading(false))
       });
   };
 };
-
 
 //POST MESSAGES
 export const postMessages = ({ message, author, parentId }) => {
@@ -103,7 +97,7 @@ export const deleteMessages = ({ id, author }) => {
     const accessToken = localStorage.getItem('accessToken')
     const userId = localStorage.getItem('userId')
 
-    fetch(`${url}/"messages"/${id}`, {
+    fetch(`${url}/messages/${id}`, {
       method: 'DELETE',
       statusCode: 204,
       body: JSON.stringify({ id, author, userId, parentId: id }),
@@ -131,7 +125,7 @@ export const editMessages = ({ id, author, newValue }) => {
   return dispatch => {
     const accessToken = localStorage.getItem('accessToken')
     const userId = localStorage.getItem('userId')
-    fetch(`${url}/"messages"/${id}`, {
+    fetch(`${url}/messages/${id}`, {
       method: 'PUT',
       body: JSON.stringify({ message: newValue, userId: userId, author: author }),
       headers: {
