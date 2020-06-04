@@ -115,7 +115,7 @@ export const MessageCard = ({ id, message, author, createdAt, children }) => {
                   </Avatar>
                   }
                   title={author}
-                  subheader={moment(message.createdAt).format('ll')}
+                  subheader={moment(reply.createdAt).format('ll')}
                 />
                 <CardContent className="messageContent">
                   <EditMessage id={reply._id} author={reply.author} message={reply.message} />

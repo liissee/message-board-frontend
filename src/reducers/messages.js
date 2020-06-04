@@ -8,6 +8,7 @@ export const messages = createSlice({
   },
   reducers: {
     setMessage: (state, action) => {
+      //json result from API, stored in "messages: []"
       state.messages = action.payload
     },
     setPostedMessage: (state, action) => {
@@ -34,8 +35,8 @@ export const messages = createSlice({
 })
 
 //Change here if you want to try with localhost and in Registration.js
-const url = "https://linda-messageboard-api.herokuapp.com"
-//const url = "http://localhost:8080"
+//const url = "https://linda-messageboard-api.herokuapp.com"
+const url = "http://localhost:8080"
 
 //GET MESSAGES
 export const fetchMessages = () => {
