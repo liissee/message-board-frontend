@@ -42,8 +42,8 @@ export const users = createSlice({
 })
 
 //URL - localhost or deployed version
-//const url = "https://linda-messageboard-api.herokuapp.com"
-const url = "http://localhost:8080"
+const url = "https://linda-messageboard-api.herokuapp.com"
+//const url = "http://localhost:8080"
 
 //LOGIN 
 export const fetchUser = ({ userName, password }) => {

@@ -34,9 +34,9 @@ export const messages = createSlice({
   }
 })
 
-//Change here if you want to try with localhost and in Registration.js
-//const url = "https://linda-messageboard-api.herokuapp.com"
-const url = "http://localhost:8080"
+//Change here and in Registration.js if you want to try with localhost 
+const url = "https://linda-messageboard-api.herokuapp.com"
+//const url = "http://localhost:8080"
 
 //GET MESSAGES
 export const fetchMessages = () => {
